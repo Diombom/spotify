@@ -1,0 +1,105 @@
+.app {
+    background-color: var(--black-color);
+    font-family: var(--font-base);
+    color: var(--lightGray-color);
+    padding: 8px;
+
+    height: 100vh;
+
+    h1, h2, h3, h4, h5, h6, p {
+        user-select: none;
+    }
+}
+
+.text-white {
+    color: var(--white-color);
+}
+
+.text-gray {
+    color: var(--lightGray-color);
+}
+
+.gap-h {
+    display: flex;
+    height: 8px;
+    width: 100%;
+}
+
+.gap-v {
+    display: flex;
+    height: 100%;
+    width: 8px;
+}
+
+.sub-heading {
+    font-size: var(--subheading-size);
+    font-weight: var(--subheading-weight);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-center-force {
+    justify-content: center !important;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.semibold {
+    font-weight: var(--semibold-weight);
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.collapse {
+    width: fit-content;
+}
+
+.align-self-center{
+    align-self:  center;
+}
+
+.fit-content {
+    width: fit-content;
+}

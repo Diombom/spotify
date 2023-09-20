@@ -1,0 +1,258 @@
+.main {
+    flex: 1;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--darkGray-color);
+    overflow-y: scroll;
+    position: relative;
+
+    .header {
+        flex: 1;
+        height: 60px;
+        max-height: 60px;
+        background-color: rgba(#1E0E46, 0.7);
+        box-sizing: border-box;
+        padding: 8px 12px;
+        border-radius: 10px 10px 0 0;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        .action-buttons {
+            padding: 4px 8px;
+            flex: 1;
+
+            img {
+                height: 40px;
+                width: 40px;
+                padding: 10px;
+                border-radius: 50%;
+                margin-right: 16px;
+                background-color: rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+            }
+        }
+
+        .account-action-buttons {
+            padding: 4px 8px;
+            margin: 0 8px;
+            flex: 1;            
+
+            .install-app-container {
+                padding: 4px;
+                background-color: var(--black-color);
+                border-radius: 20px;
+                cursor: pointer;
+
+                img {
+                    height: 20px;
+                    width: 20px;
+                    padding: 2px;
+                    border: 2px solid #fff;
+                    border-radius: 50%;
+                    margin: 0 8px;
+                }
+                
+                p {
+                    font-weight: var(--semibold-weight);
+                    color: #fff;
+                    margin: 0 8px;
+                    user-select: none;
+                }
+            }
+
+            img.notification {
+                height: 20px;
+                margin: 0 8px;
+                cursor: pointer;
+            }
+
+            img.profile {
+                height: 40px;
+                width: 40px;
+                object-fit: cover;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .greeting-container {
+        flex: 1;
+        padding: 16px;
+        height: 60px;
+        max-height: 60px;
+
+        .greeting {
+            font-size: var(--heading-size);
+            font-weight: var(--bold-weight);
+            color: var(--white-color);
+        }
+    }
+
+    .frequently-listened-container {
+        display: grid;
+        gap: 10px 15px;
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        justify-items: stretch;
+        align-items: start;
+        padding: 8px 16px;
+        
+        .frequently-listened {
+            flex: 1;
+            height: 80px;
+            border-radius: 10px;
+
+            background-color: #2C2B2C;
+
+            .image-container {
+                height: 80px;
+                width: 80px;
+                border-radius: 10px 0 0 10px;
+                overflow: hidden;;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    overflow: hidden;
+                }
+            }
+
+            .title-container {
+                flex: 1;
+                width: 250px;
+
+                .title {
+                    padding: 16px;
+                    font-weight: var(--bold-weight);
+                    color: var(--white-color);
+                }
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            grid-template-columns: repeat(2,minmax(0,1fr));
+        }
+
+        @media screen and (max-width: 900px) {
+            grid-template-columns: repeat(1,minmax(0,1fr));
+        }
+    }
+
+    .personalized-playlist-container {
+        flex: 1;
+        padding: 8px 12px;
+        width: 100%;
+        max-width: 100%;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+            background-color: var(--lightGray-color);
+        }
+
+        .personalized-header {
+            height: 80px;
+
+            .header-title, .show-all {
+                height: 80px;
+            }
+        }
+        .personalized-playlist {
+            flex: 1;
+            width: 100%;
+            padding: 16px 8px;
+
+            .personalized-header {
+                flex: 1;
+                width: 100%;
+
+                .header-title {
+                    flex: 1;
+                    font-size: var(--text-lg-size);
+                    color: var(--white-color);
+                    font-weight: var(--bold-weight);
+                }
+
+                .show-all {
+                    flex: 1;
+                    font-weight: var(--subheading-weight);
+                    font-size: var(--text-sm-size);
+                    color: var(--lightGray-color);
+                }
+            }
+
+
+            .personalized-card-container {
+                display: grid;
+                gap: 24px;
+                grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+                justify-items: start;
+                align-items: stretch;
+                overflow-x: hidden;
+                white-space: nowrap;
+                
+                .personalized-card {
+                    width: 100%;
+                    background-color: #181818;
+                    padding: 16px;
+                    border-radius: 10px;
+
+                    max-width: 300px;
+    
+                    .image-container {
+                        width: 100%;
+                        height: 200px;
+                        border-radius: 5px;
+                        margin-bottom: 16px;
+                        overflow: hidden;
+
+                        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 5px;
+                            object-fit: cover;
+                        }
+
+                        &.artist {
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            height: 150px;
+                            width: 150px;
+                            
+                            img {
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    .wrapper {
+                        flex: 1;
+                        width: 100%;
+                        overflow: hidden;
+                    }
+
+                    .title, .description, .creator, .artist {
+                        padding-bottom: 8px;
+                        line-height: 25px;
+                    }
+                }
+
+                @media screen and (max-width: 900px) {
+                    justify-items: center;
+                }
+
+            }
+
+        }
+
+        .gap-110 {
+            padding: 55px 0;
+            margin: 0;
+        }
+    }
+}

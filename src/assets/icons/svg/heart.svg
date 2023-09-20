@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g id="heart">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-737" y="363" width="24" height="24"/>
+		</defs>
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g style="clip-path:url(#SVGID_2_);">
+			<path d="M-732.51,376.207l7.51,7.241l7.51-7.241c1.3-0.982,2.15-2.538,2.15-4.291c0-2.961-2.41-5.364-5.37-5.364
+				c-1.75,0-3.31,0.847-4.29,2.151c-0.98-1.304-2.54-2.151-4.29-2.151c-2.96,0-5.37,2.403-5.37,5.364
+				C-734.66,373.669-733.81,375.225-732.51,376.207z M-729.29,368.483c1.09,0,2.09,0.502,2.74,1.377l1.55,2.064l1.55-2.064
+				c0.65-0.875,1.65-1.377,2.74-1.377c1.89,0,3.43,1.54,3.43,3.433c0,1.088-0.5,2.089-1.37,2.748l-0.1,0.071l-0.08,0.082
+				l-6.17,5.949l-6.17-5.949l-0.08-0.082l-0.1-0.071c-0.87-0.659-1.37-1.66-1.37-2.748
+				C-732.72,370.023-731.18,368.483-729.29,368.483z"/>
+		</g>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>
