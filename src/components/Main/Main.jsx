@@ -70,7 +70,7 @@ const Main = () => {
                         </div>
                     </div>
                 ))}
-                <div className="gap-110"></div>
+                <div className="gap-100"></div>
             </div>
         </div>
     </>

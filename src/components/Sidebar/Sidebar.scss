@@ -3,7 +3,6 @@
     width: fit-content;
     max-width: 420px;
     max-height: 100vh;
-    overflow-y: scroll;
     
 
      nav {
@@ -55,7 +54,6 @@
             flex-direction: column;
             line-height: 40px;
             padding: 8px;
-            overflow-y: scroll;
             position: relative;
 
             background-color: var(--darkGray-color);
@@ -82,13 +80,17 @@
                     align-items: center;
 
                     padding: 4px 12px;
-
+                    
                     img {
                         height: 20px;
                         width: 20px;
                         object-fit: cover;
                         margin-right: 1rem;
                         cursor: pointer;
+                        
+                        @media screen and (max-width: 670px) {
+                            display: none;
+                        }
                     }
                 }
 
@@ -149,6 +151,8 @@
 
                     color: var(--white-color);
 
+                    user-select: none;
+
                     cursor: pointer;
 
                     &.active {
@@ -168,6 +172,19 @@
                         height: 32px;
                         width: 32px;
                         border-radius: 50%;
+                        position: relative;
+
+                        &::before {
+                            content: "";
+                            height: 100%;
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            border-radius: 50%;
+                            background-color: rgba(#fff, 0);
+                            z-index: 2;
+                        }
 
                         img {
                             height: 15px;
@@ -250,7 +267,10 @@
                 flex: 1;
                 align-items: stretch;
 
-                transition: all 200ms ease-in-out;
+                overflow-y: scroll;
+                
+                // max-height: 250px;
+                // min-height: 250px;
 
                 /* scrollbar-width: thin;
                 scrollbar-color: var(--primary-color); */
@@ -264,7 +284,7 @@
                     padding: 8px;
                     border-radius: 10px;
 
-                    transition: all 200ms ease-in-out;
+                    // transition: all 200ms ease-in-out;
 
                     .img-container {
                         flex: 1;
@@ -346,7 +366,7 @@
                     flex-direction: column;
                     padding: 8px 4px;
 
-                    transition: all 200ms ease-in-out;
+                    // transition: all 200ms ease-in-out;
                 }
 
                 &.grid {
@@ -391,7 +411,12 @@
                             display: none;
                         }
                     }
-                }                
+                }
+                
+                .gap-110 {
+                    padding: 55px 0;
+                    margin: 0;
+                }
             }
         }
      }

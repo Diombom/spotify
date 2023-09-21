@@ -9,7 +9,7 @@ const App = () => {
     <div className="app flex flex-row">
       <Sidebar />
       <Main />
-      {/* <NowPlaying /> */}
+      <NowPlaying />
     </div>
   )
 }

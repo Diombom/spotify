@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 
 import { icons } from '../../constants';
 import { playlists } from '../../constants/data';
@@ -9,11 +9,15 @@ import './Sidebar.scss';
 const Sidebar = () => {
 
   function getWindowHeight() {
-    const { innerHeight: height } = window;
+
+    const { innerHeight: height, innerWidth: width } = window;
+
     return {
-      height
+      height, width
     };
   }
+
+  // States
   
   const [windowHeight, setWindowHeight] = useState(getWindowHeight());
 
@@ -28,18 +32,86 @@ const Sidebar = () => {
   const [showPlaylists, setShowPlaylists] = useState([]);
 
   var showActivePlaylist = '';
-  
+
+  // Refs
+
+  const playlistContainer = useRef(0);
+
+  const searchFilterBar = useRef();
+
+  const sidebar = useRef();
+
+  const sidebarHeader = useRef();
+
+  useLayoutEffect(() => {
+
+    const { innerHeight: height} = window;
+
+    if (searchFilterBar.current.offsetHeight > 0) {
+
+      playlistContainer.current.setAttribute('style', `min-height: ${height - 288}px; max-height: ${height - 288}px`);
+    } else {
+
+      playlistContainer.current.setAttribute('style', `min-height: ${height - 240}px; max-height: ${height - 240}px`);
+    }
+  }, [windowHeight.height])
+
+  useLayoutEffect(() => {
+    
+    if(windowHeight.width < 1023) {
+
+      playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 288}px; max-height: ${windowHeight.height - 288}px`);
+
+      setExpandSidebar(false);
+    }
+
+    if(windowHeight.width < 670) {
+
+      setCollapseSidebar(true);
+
+      setListGridToggle('list');
+
+      playlistContainer.current.classList.add('fit-content');
+
+      setCollapseSidebar(true);
+
+      sidebar.current.setAttribute('style', "max-width: 106px;");
+
+      playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 240}px; max-height: ${windowHeight.height - 240}px`);
+    } else {
+
+      playlistContainer.current.classList.remove('fit-content');
+    }
+
+  }, [windowHeight.width])
+
+
+  // Functions  
 
   const handleCollapseSidebar = () => {
 
-    collapseSidebar === false ? setCollapseSidebar(true) : setCollapseSidebar(false);
+    if(collapseSidebar === false) {
+
+      setCollapseSidebar(true);
+
+      sidebar.current.setAttribute('style', "max-width: 106px;");
+    } else {
+
+      setCollapseSidebar(false);
+
+      sidebar.current.removeAttribute('style', "max-width: 106px;");
+    }
 
     setListGridToggle('list');
   }
 
   const handleExpandSidebar = () => {
 
-    expandSidebar === false? setExpandSidebar(true) : setExpandSidebar(false);
+    const { innerHeight: height} = window;
+
+    expandSidebar === false ? playlistContainer.current.setAttribute('style', `min-height: ${height - 240}px; max-height: ${height - 240}px`) : playlistContainer.current.setAttribute('style', `min-height: ${height - 288}px; max-height: ${height - 288}px`);
+
+    expandSidebar === false ? setExpandSidebar(true) : setExpandSidebar(false);    
 
   }
 
@@ -52,7 +124,7 @@ const Sidebar = () => {
 
     const siblings = value.target.parentNode.children;
     
-    siblings[0].classList.remove('active');
+    siblings[0].classList.remove('hidden');
 
     siblings[1].classList.remove('active');
 
@@ -61,6 +133,20 @@ const Sidebar = () => {
     value.target.classList.add('active');
 
     setActivePlaylist(value.target.innerText.slice(0, -1));
+    
+  }
+
+  const handleClearPlaylistFilter = (value) => {
+
+    const siblings = value.target.parentNode.children;
+
+    siblings[1].classList.remove('active');
+
+    siblings[2].classList.remove('active');
+
+    value.target.classList.add('hidden');
+
+    setActivePlaylist('Playlist');
     
   }
   
@@ -85,9 +171,9 @@ const Sidebar = () => {
   
 
   return (
-    <div className={ (collapseSidebar === true ? "sidebar collapse" : "sidebar") && (expandSidebar === true ? "sidebar expanded" : "sidebar") }>
+    <div ref={sidebar} className={ (collapseSidebar === true ? "sidebar collapse" : "sidebar") && (expandSidebar === true ? "sidebar expanded" : "sidebar") }>
       <nav>
-        <div className="header">
+        <div ref={sidebarHeader} className="header">
           <div className={ collapseSidebar === true ? "header-item justify-center-force" : "header-item"}>
             <img src={icons.home} alt="home" />
             <p className={ collapseSidebar === true ? "sub-heading active hidden" : "sub-heading active" }>Home</p>
@@ -120,8 +206,8 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-          <div id="playlistTags" className={collapseSidebar === true ? "hidden" : "playlist-tags"}>
-            <div className="tag cancel hidden">
+          <div className={collapseSidebar === true ? "hidden" : "playlist-tags"}>
+            <div className="tag cancel hidden" onClick={(e) => handleClearPlaylistFilter(e)}>
               <img src={icons.close} alt="cancel filter" />
             </div>
             <p className="tag" onClick={(e) => handleActivePlaylist(e)}>Playlists</p>
@@ -135,7 +221,7 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-          <div className={collapseSidebar === true ? "hidden" : (expandSidebar === true ? "hidden" : "search-filter-bar")}>
+          <div ref={searchFilterBar} className={collapseSidebar === true ? "hidden" : (expandSidebar === true ? "hidden" : "search-filter-bar")}>
             <div className="left">
               <img src={icons.search} alt="search" />
             </div>
@@ -144,10 +230,10 @@ const Sidebar = () => {
               <img className="caret" src={icons.play} alt="filter" />
             </div>
           </div>
-          <div className={ listGridToggle === "list" ? "playlists flex list" : (expandSidebar === true ? "playlists grid" : "playlists flex list") }>
+          <div ref={playlistContainer} className={ listGridToggle === "list" ? "playlists flex list" : (expandSidebar === true ? "playlists grid" : "playlists flex list") }>
             {showPlaylists.map((playlist) => (
               <>
-                <div className={ collapseSidebar === true ? "playlist flex fit-content" : "playlist flex" }  key={playlist.id + "+" + playlist.title}>
+                <div ref={playlists} className={ collapseSidebar === true ? "playlist flex fit-content" : "playlist flex" }  key={playlist.id + "+" + playlist.title}>
                   <div className="img-container flex justify-start align-center">
                     <img src={playlist.imgUrl} alt="playlist thumbnail" />
                   </div>
@@ -169,6 +255,7 @@ const Sidebar = () => {
                 </div>
               </>
             ))}
+            <div className="gap-110"></div>
           </div>
         </div>
       </nav>
