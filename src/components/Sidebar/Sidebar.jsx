@@ -95,11 +95,15 @@ const Sidebar = () => {
       setCollapseSidebar(true);
 
       sidebar.current.setAttribute('style', "max-width: 106px;");
+
+      playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 200}px; max-height: ${windowHeight.height - 200}px`)
     } else {
 
       setCollapseSidebar(false);
 
       sidebar.current.removeAttribute('style', "max-width: 106px;");
+
+      playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 288}px; max-height: ${windowHeight.height - 288}px`)
     }
 
     setListGridToggle('list');
@@ -107,9 +111,7 @@ const Sidebar = () => {
 
   const handleExpandSidebar = () => {
 
-    const { innerHeight: height} = window;
-
-    expandSidebar === false ? playlistContainer.current.setAttribute('style', `min-height: ${height - 240}px; max-height: ${height - 240}px`) : playlistContainer.current.setAttribute('style', `min-height: ${height - 288}px; max-height: ${height - 288}px`);
+    expandSidebar === false ? playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 240}px; max-height: ${windowHeight.height - 240}px`) : playlistContainer.current.setAttribute('style', `min-height: ${windowHeight.height - 288}px; max-height: ${windowHeight.height - 288}px`);
 
     expandSidebar === false ? setExpandSidebar(true) : setExpandSidebar(false);    
 
@@ -179,7 +181,7 @@ const Sidebar = () => {
             <p className={ collapseSidebar === true ? "sub-heading active hidden" : "sub-heading active" }>Home</p>
           </div>
           <div className={ collapseSidebar === true ? "header-item justify-center-force" : "header-item"}>
-            <img src={icons.search} alt="search" />
+            <img className="search" src={icons.search} alt="search" />
             <p className={collapseSidebar === true ? "sub-heading hidden" : "sub-heading"}>Search</p>
           </div>
         </div>

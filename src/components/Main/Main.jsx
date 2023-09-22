@@ -26,7 +26,7 @@ const Main = () => {
                 </div>
             </div>
             <div className="greeting-container flex flex-row justify-start align-center">
-                <div className="greeting">Good morning</div>
+                <div className="greeting">Good afternoon</div>
             </div>
             <div className="frequently-listened-container">
                 {frequentlyListened.map((item) => (
@@ -45,8 +45,12 @@ const Main = () => {
                 { personalizedPlaylists.map((item) => (
                     <div className="personalized-playlist flex flex-col" key={item[1][1].id + "+" + item[1][1].title}>
                         <div className="personalized-header flex flex-row">
-                            <div className="header-title flex flex-row justify-start align-center">{item[0]}</div>
-                            <div className="show-all flex flex-row justify-end align-center">Show all</div>
+                            <div className="header-title-container flex flex-row justify-start align-center">
+                                <p className="header-title flex">{item[0]}</p>
+                            </div>
+                            <div className="show-all-container flex flex-row justify-end align-center">
+                                <p className="show-all flex">Show all</p>
+                            </div>
                         </div>
 
                         <div className="personalized-card-container">
@@ -54,6 +58,9 @@ const Main = () => {
                                 <div className="personalized-card flex flex-col" key={personalized.id + "+" + personalized.title +  "+" + personalized.description}>
                                     <div className="wrapper flex justify-center align-center">
                                         <div className={personalized.type === "Artist" ? "image-container artist" : "image-container"}>
+                                            <div className={personalized.type === "Artist" ? "hidden" : "play-item flex justify-center align-center"}>
+                                                <img src={icons.play} alt="Play Item" />
+                                            </div>
                                             <img src={personalized.imgUrl} alt={personalized.title} />
                                         </div>
                                     </div>
