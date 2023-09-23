@@ -64,6 +64,7 @@
 
         .play-container {
             flex: 1;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 
             .buttons-container {
                 width: 100%;
@@ -78,7 +79,7 @@
                     margin: 0 8px;
                     object-fit: cover;
     
-                    &.play {
+                    &.play, &.pause {
                         height: 40px;
                         width: 40px;
                         object-fit: contain;
@@ -87,59 +88,78 @@
             }
     
             .timeline-container {
+                flex: 1;
                 width: 100%;
                 padding: 8px 12px;
                 
                 .current-time, .total-time {
                     font-size: var(--text-xs-size);
-                    padding: 0 16px;
+                    width: 35px;
+                    flex: 1;
                 }
-    
-                .playtime {
+
+                .current-time {
+                    padding-right: 8px;
+                }
+
+                .total-time {
+                    padding-left: 8px;
+                }
+
+                .playtime-container {
                     width: 70%;
-                    height: 6px;
-                    border-radius: 3px;
-                    background-color: var(--lightGray-color);
-                    align-items: center;
-    
-                    &::before {
-                        content: "";
+                    height: 12px;
+                    overflow-x: hidden;
+                    border-radius: 12px;
+
+                    .playtime {
+                        width: 100%;
                         height: 6px;
                         border-radius: 3px;
-                        background-color: var(--white-color);
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        bottom: 0;
-                        width: 25%;
-                        z-index: 2;
-                    }
-    
-                    &::after {
-                        content: "";
-                        height: 12px;
-                        width: 12px;
-                        background-color: var(--white-color);
-                        border-radius: 50%;
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        left: 25%;
-                        transform: translateX(-25%);
-                        opacity: 0;
-                        z-index: 3;
-                    }
-    
-                    &:hover {
-                        &::before {
-                            background-color: var(--primary-color);
+                        background-color: var(--lightGray-color);
+                        align-items: center;
+                        transition: all 150ms ease-in-out;
+        
+                        .current-playtime {
+                            height: 6px;
+                            border-radius: 3px;
+                            background-color: var(--white-color);
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            bottom: 0;
+                            width: 100%;
+                            transform: translateX(-100%);
+                            z-index: 2;
+                            transition: all 150ms ease-in-out;
+
+                            .current-playtime-indicator {
+                                height: 12px;
+                                width: 12px;
+                                border-radius: 50%;
+                                background-color: #fff;
+                                position: absolute;
+                                right: 0;
+                                top: -3px;
+                                z-index: 3;
+                                opacity: 0;
+                            }
                         }
-    
-                        &::after {
-                            opacity: 1;
+        
+                        &:hover {
+
+                            .current-playtime {
+                                background-color: var(--primary-color);
+
+                                .current-playtime-indicator {
+                                    opacity: 1;
+                                }
+                            }
                         }
                     }
                 }
+    
+                
             }
         }
     }
@@ -159,7 +179,29 @@
         }
 
         .play-actions {
-            flex: 3;
+            flex: 4;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+
+        .play-actions {
+            
+            .like-container {
+                padding: 8px 4px;
+            }
+
+            .play-container {
+
+                .timeline-container {
+                    padding: 8px 0;
+
+                    .current-time, .total-time {
+                        padding: 0 8px;
+                    }
+                }
+            }
+
         }
     }
 }

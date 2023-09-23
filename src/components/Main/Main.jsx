@@ -13,8 +13,8 @@ const Main = () => {
         <div className="main flex flex-col">
             <div className="header flex flex-row align-center">
                 <div className="action-buttons flex flex-row justify-start align-center">
-                    <img src={icons.actionLeft} alt="go back" />
-                    <img src={icons.actionRight} alt="go forward" />
+                    <img className="go-back" src={icons.actionLeft} alt="go back" />
+                    <img className="go-forward" src={icons.actionRight} alt="go forward" />
                 </div>
                 <div className="account-action-buttons flex flex-row justify-end align-center">
                     <div className="install-app-container flex flex-row fit-content align-center">

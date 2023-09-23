@@ -38,6 +38,16 @@
                 background-color: rgba(0, 0, 0, 0.7);
                 cursor: pointer;
             }
+
+            @media screen and (max-width: 1023px) {
+                .go-forward {
+                    display: none;
+                }
+
+                .go-back {
+                    margin: 0;
+                }
+            }
         }
 
         .account-action-buttons {
@@ -115,12 +125,27 @@
         @media screen and (max-width: 770px) {
 
             .account-action-buttons {
+                flex: 5;
+            }
+
+        }
+
+        @media screen and (max-width: 450px) {
+
+            .account-action-buttons {
+
+                margin: 0;
 
                 .install-app-container {
-                    p {
-                        display: none;
+    
+                    img {
+                        margin: 0 4px;
                     }
-                }
+    
+                    p {
+                        margin: 4px;
+                    }
+                }            
             }
 
         }
